@@ -1,0 +1,21 @@
+name: DB Backup
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage DB files
+        run: git add -f Backend/server/data/ 2>/dev/null || true
+      - name: Commit backup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --staged --quiet || git commit -m "chore: auto DB backup $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push

@@ -32,6 +32,8 @@
           <router-link to="/certifications" class="nav-link">[ CERTIFICATIONS ]</router-link>
           <router-link to="/business" class="nav-link">[ BUSINESS ]</router-link>
           <a href="#contact" class="nav-link" @click="scrollToSection('contact')">[ CONTACT ]</a>
+          <router-link to="/guestbook" class="nav-link">[ GUESTBOOK ]</router-link>
+          <a href="/admin/login" class="nav-link" target="_blank">[ ADMIN ]</a>
         </div>
       </div>
     </nav>
@@ -283,6 +285,23 @@
         <div class="footer-border"></div>
       </div>
     </footer>
+
+    <!-- Konami Code Easter Egg Overlay -->
+    <div v-if="konamiActivated" class="konami-overlay" @click.self="konamiActivated = false">
+      <div class="konami-box">
+        <pre class="konami-art">
+ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+ ★                         ★
+ ★  CHEAT CODE ACTIVATED!  ★
+ ★                         ★
+ ★  ↑ ↑ ↓ ↓ ← → ← → B A  ★
+ ★                         ★
+ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</pre>
+        <p class="konami-msg">YOU FOUND THE SECRET!</p>
+        <p class="konami-sub">+30 LIVES GRANTED. ENJOY THE PORTFOLIO, PLAYER 1.</p>
+        <button class="konami-close" @click="konamiActivated = false">[ CLOSE ]</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -641,12 +660,33 @@ onMounted(() => {
   visitorInterval = setInterval(fetchVisitorCount, 30000)
   updateTime()
   timeInterval = window.setInterval(updateTime, 1000)
+
+  // Konami code listener
+  window.addEventListener('keydown', handleKonami)
 })
 
 onUnmounted(() => {
   if (timeInterval) clearInterval(timeInterval)
   if (visitorInterval) clearInterval(visitorInterval)
+  window.removeEventListener('keydown', handleKonami)
 })
+
+// Konami Code Easter Egg
+const konamiActivated = ref(false)
+const KONAMI_SEQUENCE = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']
+const konamiProgress = ref(0)
+
+function handleKonami(e: KeyboardEvent) {
+  if (e.key === KONAMI_SEQUENCE[konamiProgress.value]) {
+    konamiProgress.value++
+    if (konamiProgress.value === KONAMI_SEQUENCE.length) {
+      konamiActivated.value = true
+      konamiProgress.value = 0
+    }
+  } else {
+    konamiProgress.value = e.key === KONAMI_SEQUENCE[0] ? 1 : 0
+  }
+}
 </script>
 
 <style scoped>
@@ -1545,5 +1585,76 @@ onUnmounted(() => {
   .social-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Konami Code Easter Egg */
+.konami-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.konami-box {
+  background: #000;
+  border: 3px solid #00ff41;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 255, 65, 0.5);
+  max-width: 420px;
+  width: 90%;
+}
+
+.konami-art {
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  text-shadow: 0 0 6px #00ff41;
+  margin: 0 0 1rem;
+  white-space: pre;
+  line-height: 1.5;
+}
+
+.konami-msg {
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0 0 0.5rem;
+  text-shadow: 0 0 8px #00ffff;
+}
+
+.konami-sub {
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  margin: 0 0 1.2rem;
+}
+
+.konami-close {
+  background: transparent;
+  border: 1px solid #00ff41;
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.konami-close:hover {
+  background: #00ff41;
+  color: #000;
 }
 </style>
