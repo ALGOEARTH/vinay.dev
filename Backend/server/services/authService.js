@@ -22,5 +22,5 @@ export async function seedAdminUser() {
   const email = process.env.ADMIN_EMAIL || 'admin@vinay.dev'
 
   await createUser({ username, email, password, role: 'admin' })
-  console.log(`[authService] Admin user '${username}' created.`)
+  console.log('[authService] Default admin user created.')
 }

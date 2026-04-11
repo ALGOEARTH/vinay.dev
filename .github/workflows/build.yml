@@ -7,6 +7,8 @@ jobs:
   frontend:
     name: Frontend – Lint + Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: Frontend
@@ -24,6 +26,8 @@ jobs:
   backend:
     name: Backend – Test + Smoke
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: Backend/server
@@ -55,6 +59,8 @@ jobs:
   ml-scripts:
     name: ML/AI Scripts
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
