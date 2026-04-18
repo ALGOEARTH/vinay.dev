@@ -14,6 +14,7 @@ import { seedAdminUser } from './services/authService.js'
 import { errorHandler } from './middleware/errorHandler.js'
 import adminRouter from './routes/admin.js'
 import guestbookRouter from './routes/guestbook.js'
+import { DATA_DIR } from './config/dataPath.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -22,8 +23,6 @@ const app = express()
 // Port 4000 matches the Vite dev server proxy configuration in Frontend/vite.config.ts
 const PORT = process.env.PORT || 4000
 
-// Data file paths
-const DATA_DIR = path.join(__dirname, 'data')
 const CONTACTS_FILE = path.join(DATA_DIR, 'contacts.json')
 const VISITORS_FILE = path.join(DATA_DIR, 'visitors.json')
 

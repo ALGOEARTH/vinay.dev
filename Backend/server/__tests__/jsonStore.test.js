@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 import { insert, findAll, findById, findOne, update, remove, count } from '../services/jsonStore.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = path.join(__dirname, '../data')
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../data')
 
 const TEST_COL = 'test'
 

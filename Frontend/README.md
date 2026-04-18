@@ -40,7 +40,7 @@ Start both frontend and backend together:
 npm run dev
 ```
 - Frontend: Runs on http://localhost:5173/
-- Backend:  Runs on http://localhost:3001/
+- Backend:  Runs on http://localhost:4000/
 
 ### 4. Build for Production
 

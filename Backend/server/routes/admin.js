@@ -3,13 +3,11 @@ import bcrypt from 'bcryptjs'
 import { body, validationResult } from 'express-validator'
 import fs from 'fs/promises'
 import path from 'path'
-import { fileURLToPath } from 'url'
 import { findAll, findById, findOne, insert, update, remove, count } from '../services/jsonStore.js'
 import { validateCredentials } from '../services/authService.js'
 import { verifyToken, requireAdmin, generateToken } from '../middleware/auth.js'
+import { DATA_DIR } from '../config/dataPath.js'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = path.join(__dirname, '../data')
 const VISITORS_FILE = path.join(DATA_DIR, 'visitors.json')
 const CONTACTS_FILE = path.join(DATA_DIR, 'contacts.json')
 

@@ -6,7 +6,10 @@ The project is a monorepo with a `Frontend` and `Backend` directory.
 
 -   **`Frontend/`**: Contains the Vue 3 application, managed by Vite.
 -   **`Backend/`**: Contains the Express.js API server.
--   **`package.json`**: The single `package.json` at the root manages all dependencies and scripts.
+-   **`package.json` files**:
+    - Root: convenience scripts
+    - `Frontend/package.json`: frontend dependencies/scripts
+    - `Backend/server/package.json`: backend dependencies/scripts
 
 ## Setup & Running the Project
 
@@ -35,7 +38,7 @@ npm run dev
 ```
 
 -   The **frontend** will be available at `http://localhost:5173`.
--   The **backend** API will be running at `http://localhost:3001`.
+-   The **backend** API will be running at `http://localhost:4000`.
 -   The Vite dev server will automatically proxy any requests from the frontend to `/api` over to the backend.
 
 ## Building for Production & Deployment
@@ -58,6 +61,6 @@ To run just the backend server, which will also serve the built frontend files, 
 npm run server
 ```
 
-The application will be available at `http://localhost:3001`. The Express server is already configured to serve the static files from `Frontend/dist` and handle client-side routing.
+The application will be available at `http://localhost:4000`. The Express server is already configured to serve the static files from `Frontend/dist` and handle client-side routing.
 
 This is the command you would use in a production environment (e.g., on a cloud service). 

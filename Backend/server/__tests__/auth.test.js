@@ -6,7 +6,7 @@ import { validateCredentials, createUser, seedAdminUser } from '../services/auth
 import { findAll, update } from '../services/jsonStore.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = path.join(__dirname, '../data')
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../data')
 const USERS_FILE = path.join(DATA_DIR, 'users.json')
 
 const RUN_ID = Date.now()
@@ -29,7 +29,9 @@ beforeAll(async () => {
 afterAll(() => {
   try {
     const users = JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'))
-    const filtered = users.filter(u => !String(u.username).startsWith('testuser_'))
+    const filtered = users.filter(
+      u => !String(u.username).startsWith('testuser_') && !String(u.username).startsWith('created_')
+    )
     fs.writeFileSync(USERS_FILE, JSON.stringify(filtered, null, 2), 'utf8')
   } catch { /* ignore */ }
 })
