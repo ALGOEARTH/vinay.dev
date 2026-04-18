@@ -250,5 +250,50 @@
     "ip": "::1",
     "created_at": "2026-04-11T05:53:25.585Z",
     "updated_at": "2026-04-11T05:53:25.585Z"
+  },
+  {
+    "id": 29,
+    "user_id": 17,
+    "action": "LOGIN",
+    "details": "{\"username\":\"admin\"}",
+    "ip": "::ffff:127.0.0.1",
+    "created_at": "2026-04-18T16:35:30.959Z",
+    "updated_at": "2026-04-18T16:35:30.959Z"
+  },
+  {
+    "id": 30,
+    "user_id": 17,
+    "action": "LOGIN",
+    "details": "{\"username\":\"admin\"}",
+    "ip": "::ffff:127.0.0.1",
+    "created_at": "2026-04-18T16:35:31.047Z",
+    "updated_at": "2026-04-18T16:35:31.047Z"
+  },
+  {
+    "id": 31,
+    "user_id": 17,
+    "action": "CREATE_POST",
+    "details": "{\"postId\":2,\"title\":\"Test Post\"}",
+    "ip": "::ffff:127.0.0.1",
+    "created_at": "2026-04-18T16:35:31.101Z",
+    "updated_at": "2026-04-18T16:35:31.101Z"
+  },
+  {
+    "id": 32,
+    "user_id": 17,
+    "action": "UPDATE_POST",
+    "details": "{\"postId\":\"2\",\"status\":\"published\"}",
+    "ip": "::ffff:127.0.0.1",
+    "created_at": "2026-04-18T16:35:31.109Z",
+    "updated_at": "2026-04-18T16:35:31.109Z"
+  },
+  {
+    "id": 33,
+    "user_id": 17,
+    "action": "DELETE_POST",
+    "details": "{\"postId\":\"2\"}",
+    "ip": "::ffff:127.0.0.1",
+    "created_at": "2026-04-18T16:35:31.112Z",
+    "updated_at": "2026-04-18T16:35:31.112Z"
   }
 ]

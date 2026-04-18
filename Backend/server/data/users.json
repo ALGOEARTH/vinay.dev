@@ -40,16 +40,6 @@
     "updated_at": "2026-04-11T05:51:26.122Z"
   },
   {
-    "id": 14,
-    "username": "admin",
-    "email": "admin@vinay.dev",
-    "password_hash": "$2b$10$vjeZ0zPhNLse2w564emU8u3CFKGmRZkK0NVKDi4bs7gVxan7FvSEe",
-    "role": "admin",
-    "is_banned": false,
-    "created_at": "2026-04-11T05:53:05.556Z",
-    "updated_at": "2026-04-11T05:53:05.556Z"
-  },
-  {
     "id": 15,
     "username": "created_1775886785759",
     "email": "created_1775886785759@test.com",
@@ -58,5 +48,25 @@
     "is_banned": false,
     "created_at": "2026-04-11T05:53:05.851Z",
     "updated_at": "2026-04-11T05:53:05.851Z"
+  },
+  {
+    "id": 17,
+    "username": "admin",
+    "email": "admin@vinay.dev",
+    "password_hash": "$2b$10$RF6KjEsHwmhZc6nD9jTgQeI5ZbsKO8i5gGc4YX2MryrruA6yYvTTy",
+    "role": "admin",
+    "is_banned": false,
+    "created_at": "2026-04-18T16:35:30.597Z",
+    "updated_at": "2026-04-18T16:35:30.597Z"
+  },
+  {
+    "id": 18,
+    "username": "created_1776530130808",
+    "email": "created_1776530130808@test.com",
+    "password_hash": "$2b$10$859oWDonfNnN3zEOFiOciueWd1wgNlBT9VJGm/BlGNb/uMWE0zEI6",
+    "role": "user",
+    "is_banned": false,
+    "created_at": "2026-04-18T16:35:30.921Z",
+    "updated_at": "2026-04-18T16:35:30.921Z"
   }
 ]
