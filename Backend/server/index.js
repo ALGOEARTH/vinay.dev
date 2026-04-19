@@ -3,6 +3,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 import { body, validationResult } from 'express-validator'
+import fsSync from 'fs'
 import fs from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -282,13 +283,22 @@ app.get('/api/analytics', async (req, res) => {
 
 // Serve frontend static files in production
 if (process.env.NODE_ENV === 'production') {
-  const FRONTEND_DIST = path.join(__dirname, '../../Frontend/dist')
-  app.use(express.static(FRONTEND_DIST))
+  const frontendDistCandidates = [
+    path.join(__dirname, 'public'),
+    path.join(__dirname, '../../Frontend/dist')
+  ]
+  const FRONTEND_DIST = frontendDistCandidates.find((dir) =>
+    fsSync.existsSync(path.join(dir, 'index.html'))
+  )
 
-  // SPA Fallback: serve index.html for any non-API route
-  app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(FRONTEND_DIST, 'index.html'))
-  })
+  if (FRONTEND_DIST) {
+    app.use(express.static(FRONTEND_DIST))
+
+    // SPA Fallback: serve index.html for any non-API route
+    app.get(/^\/(?!api).*/, (req, res) => {
+      res.sendFile(path.join(FRONTEND_DIST, 'index.html'))
+    })
+  }
 }
 
 // Error handling middleware
